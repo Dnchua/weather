@@ -24,7 +24,7 @@ export default class EchartList extends Component {
         let myChart = echarts.init(document.getElementById('main'));
         let option = {
             title: {
-                text: '未来一周气温变化',
+                text: '气温变化',
             },
             tooltip: {
                 trigger: 'axis'
@@ -92,7 +92,7 @@ export default class EchartList extends Component {
         if (type === 'a') {
             option = {
                 title: {
-                    text: '未来一周气温变化',
+                    text: '气温变化',
                 },
                 tooltip: {
                     trigger: 'axis'
@@ -153,7 +153,7 @@ export default class EchartList extends Component {
         } else {
             option = {
                 title: {
-                    text: '未来一周湿度变化',
+                    text: '湿度变化',
                 },
                 tooltip: {
                     trigger: 'axis'

@@ -24,7 +24,7 @@ class City extends Component {
     render(){
         return(
             <Row>
-                <Col className="ant-dropdown-link city" xs={24} sm={24} md={24} lg={24} xl={24}>
+                <Col className="ant-dropdown-link city" xs={24} sm={24} md={24} lg={24} xl={24} >
                 {this.props.city} <Icon type="cloud" style={{fontSize:20}} />
                 </Col>
             </Row>

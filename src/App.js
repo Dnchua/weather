@@ -80,7 +80,7 @@ class App extends Component {
 
     render() {
       return (
-        <div>
+        <div className='backgroundM'>
           <City city = {this.state.city}/>
           <MainTainer 
               hazeData = {this.state.hazeData}

@@ -1,0 +1,33 @@
+.maintain{
+    color:#fff;
+}
+.wrap{
+    display: flex;
+    justify-content: center;
+    margin-top:20px;
+}
+.temper{
+    font-size:40px;
+}
+.tianqixianxiang{
+    font-size:20px;
+}
+.wrap-zhiliang{
+    position: relative;
+    margin:10px 0 20px 0;
+    border-top:1px solid #444;
+    border-bottom:1px solid #444;
+    padding:10px 15px;
+    overflow: hidden;
+}
+.leftContent{
+    position: absolute;
+    top:22px;
+    right:100px;
+    font-size:16px;
+    overflow: hidden;
+}
+.leftContent >div{
+    padding:2px 4px;
+    margin:1px 0;
+}

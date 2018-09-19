@@ -149,7 +149,9 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-              
+              plugins: [
+                ['import', { libraryName: 'antd', style: 'css' }],
+              ],
               compact: true,
             },
           },
@@ -339,4 +341,7 @@ module.exports = {
     tls: 'empty',
     child_process: 'empty',
   },
+  externals:{
+    'BMap':'BMap',
+  }
 };

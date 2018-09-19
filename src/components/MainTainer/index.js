@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {Card,Row,Col} from 'antd';
+import {Row,Col,Progress } from 'antd';
 import EchartList from './EchartList';
+import './index.css';
 
 
 class MainTainer extends Component {
@@ -23,18 +24,31 @@ class MainTainer extends Component {
             }
         }
         return (
-            <div>
+            <div className='maintain'>
                 <Row>
-                <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-                    <Card title='今日速览'>
-                        <Card.Grid style={gridStyle}>温度:{weatherData.temperature}</Card.Grid>
-                        <Card.Grid style={gridStyle}>天气现象:{weatherData.phenomena}</Card.Grid>
-                        <Card.Grid style={gridStyle}>相对湿度:{weatherData.humidity}</Card.Grid>
-                        <Card.Grid style={gridStyle}> 风力:{weatherData.windpower}</Card.Grid>
-                        <Card.Grid style={gridStyle}>空气质量指数:{hazeData.AQI}</Card.Grid>
-                        <Card.Grid style={gridStyle}>PM2.5浓度(μg/m3):{hazeData.PM25	}</Card.Grid>
-                        <Card.Grid style={gridStyle}>PM10浓度(μg/m3):{hazeData.PM10}</Card.Grid>
-                    </Card>
+                <Col xs={24} sm={24} md={24} lg={24} xl={24 }>
+                    <div className='wrap'>
+                        <div className='temper'>{weatherData.temperature} °C</div>
+                    </div>
+                    <div className='wrap'>
+                        <div className='tianqixianxiang'>{weatherData.phenomena}</div>
+                    </div>
+                    <div className='wrap-zhiliang'>
+                        <h3>空气质量</h3>
+                        <Progress type="dashboard" 
+                            format = {percent =>`${hazeData.AQI}`}
+                            percent={Math.floor(hazeData.AQI*100/500)} 
+                        />
+                        <div className='leftContent'>
+                            <div >PM2.5 : {hazeData.PM25}</div>
+                            <div >PM10 : {hazeData.PM10}</div>
+                            <div>NO2 : {hazeData.NO2}</div>
+                            <div>SO2 : {hazeData.SO2}</div>
+                            <div>O3 : {hazeData.o3}</div>
+                            <div>CO : {hazeData.CO}</div>
+                        </div>
+                        
+                    </div>
                 </Col>
                 </Row>
                 <Row>
