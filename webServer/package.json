@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "koa": "^2.6.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-mysql-session": "^0.0.2",
+    "koa-router": "^7.4.0",
+    "koa-session-minimal": "^3.0.4",
+    "koa2-cors": "^2.0.6",
+    "md5": "^2.2.1",
+    "moment": "^2.22.2",
+    "ms": "^2.1.1"
+  }
+}
