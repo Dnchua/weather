@@ -37,9 +37,9 @@ app.use(cors({
 
 app.use(bodyparser());
 
-router.post('/', async function (ctx) {
-    ctx.body = '恭喜 臭傻逼 你成功登陆了'
-});
+// router.post('/', async function (ctx) {
+//     ctx.body = '恭喜 臭傻逼 你成功登陆了'
+// });
 
 
 app.use(require('./routers/sign.js').routes());
