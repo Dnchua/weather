@@ -43,7 +43,8 @@ router.get('/getSearchBook',async (ctx) => {
     // const ctx_query = ctx.query;
     // console.log(ctx_query);
     const name = ctx.query.name;
-    await userModel.getSearchBook([name])
+    console.log(name)
+    await userModel.getSearchBook(name)
         .then(result => {
             let res = result;
             if (res.length) {

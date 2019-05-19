@@ -53,7 +53,7 @@ createTable(teachers);
 
 // 注册用户
 let insertData = function(value) {
-  let _sql = "insert into t_student set Student_num=?,Student_name=?,Password=?,Create_date=?;";
+  let _sql = "insert into t_student set Student_num=?,Password=?,Create_date=?,Passport=?;";
   return query(_sql, value);
 };
 //注册教师账户
@@ -179,7 +179,7 @@ let getBorrowBook = function (value) {
 }
 //获得搜索的书籍
 let getSearchBook = function (name) {
-  let _sql = `SELECT * from t_book  where Book_name like "%${name}%" limit 1,10`;
+  let _sql = `SELECT * from t_book  where Book_name like "%${name}%" limit 0,10`;
   return query(_sql)
 }
 

@@ -34,16 +34,16 @@ router.post('/signin/teacher',async (ctx) => {
     await userModel.findTeacherData(id)
         .then(result => {
             let res = result;
-            console.log(res[0]['Admin_id'],res[0]['Admin_password']);
-            if (id == res[0]['Admin_id'] && md5(pass) == res[0]['Admin_password']) {
-                ctx.body = true;
+            console.log(res[0]['Admin_name'],res[0]['Admin_password']);
+            if (id == res[0]['Admin_name'] && md5(pass) == res[0]['Admin_password']) {
+                ctx.body = {state:1,msg:'登陆成功'};
                 ctx.session.user = res[0]['Admin_name']
-                ctx.session.id = res[0]['Admin_id']
+                ctx.session.id = res[0]['Admin_name']
                 console.log('ctx.session.id', ctx.session.id)
                 console.log('session', ctx.session)
                 console.log('登录成功')
             }else{
-                ctx.body = false;
+                ctx.body = {state:3,msg:'登陆失败，用户名或密码错误!'};
                 console.log('用户名或密码错误!')
             }
         }).catch(err => {
@@ -80,14 +80,12 @@ router.post('/changepsw',async (ctx) => {
 });
 router.post("/signup", async ctx => {
     let user = {
-      name: ctx.request.body.name,
       id: ctx.request.body.id,
       pass: ctx.request.body.password,
-      repeatpass: ctx.request.body.repeatpass
+      passport:ctx.request.body.passport
     };
     console.log(user);
     await userModel.findDataByName(user.id).then(async result => {
-      console.log(result.length);
       if (result.length) {
         try {
           throw Error("用户已经存在");
@@ -97,22 +95,22 @@ router.post("/signup", async ctx => {
         }
         //用户已存在
         ctx.body = {
-          data: 2,
+          state: 3,
           message: "该用户已经存在，请重新注册"
         };
       } else {
         await userModel
           .insertData([
             user.id,
-            user.name,
             md5(user.pass),
-            moment().format("YYYY-MM-DD HH:mm:ss")
+            moment().format("YYYY-MM-DD HH:mm:ss"),
+            user.passport
           ])
           .then(res => {
             console.log("注册成功", res);
             //注册成功
             ctx.body = {
-              data: 1,
+              state: 1,
               message: "注册成功"
             };
           });
