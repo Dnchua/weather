@@ -75,7 +75,7 @@ let findUserData = function(name) {
 };
 //查找教师用户
 let findTeacherData = function(id) {
-  let _sql = `select * from t_admin where Admin_id="${id}";`;
+  let _sql = `select * from t_admin where Admin_name="${id}";`;
   return query(_sql);
 };
 //查找学生成绩
@@ -144,7 +144,7 @@ let findBookTypeList = function() {
 
 //插入图书信息
 let insertBook = function(value) {
-  let _sql = "insert into t_book set Book_num=?,Book_name=?,Writer=?,Sort_id=?,Price=?,Pub_company=?,Pub_date=?,Total_num=?,Current_num=?,Buy_date=?,Brief=?,imageName=?;";
+  let _sql = "insert into t_book set Book_name=?,Writer=?,Price=?,Pub_company=?,Total_num=?,Buy_date=?;";
   return query(_sql, value);
 };
 
@@ -189,9 +189,15 @@ let updatePsw = function (values) {
   return query(_sql,values)
 }
 
+let updateSInfo = function (values) {
+  let _sql = "UPDATE t_student set Sex=?,Telephone=?,Student_name=?,Academy_id=?,Class_id=?,Email=? where Student_num=?";
+  return query(_sql,values)
+}
 
-
-
+let getRecommendBook = function (values) {
+  let _sql = "SELECT * from t_recommend s join t_book b on s.Book_num=b.Book_num where s.Student_num=?";
+  return query(_sql,values);
+}
 module.exports = {
   query,
   insertData,
@@ -212,5 +218,7 @@ module.exports = {
   getFirstPageBook,
   getBorrowBook,
   getSearchBook,
-  updatePsw
+  updatePsw,
+  updateSInfo,
+  getRecommendBook
 };

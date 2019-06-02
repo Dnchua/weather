@@ -23,7 +23,7 @@ router.post('/signin',async (ctx) => {
             }
         }).catch(err => {
             console.log(err)
-            ctx.body = false
+            ctx.body = {state:3,msg:'登陆失败，用户名或密码错误!'};
         })
 });
 
@@ -34,6 +34,7 @@ router.post('/signin/teacher',async (ctx) => {
     await userModel.findTeacherData(id)
         .then(result => {
             let res = result;
+            console.log(res);
             console.log(res[0]['Admin_name'],res[0]['Admin_password']);
             if (id == res[0]['Admin_name'] && md5(pass) == res[0]['Admin_password']) {
                 ctx.body = {state:1,msg:'登陆成功'};
@@ -48,12 +49,12 @@ router.post('/signin/teacher',async (ctx) => {
             }
         }).catch(err => {
             console.log(err)
-            ctx.body = false
+            ctx.body = {state:3,msg:'登陆失败，用户名或密码错误!'};
         })
 });
 router.post('/changepsw',async (ctx) => {
   const id =  ctx.request.body.id;
-  const oldPass = ctx.request.body.password;
+  const oldPass = ctx.request.body.oldPassword;
   const newPass = ctx.request.body.newPassword;
   console.log(id,oldPass);
   await userModel.findDataByName(id)

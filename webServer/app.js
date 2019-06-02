@@ -1,9 +1,11 @@
 var koa = require('koa');
 var app = new koa();
+const path = require('path');
 var router = require('koa-router')();
 const cors = require('koa2-cors');
 const session = require('koa-session-minimal');
 const MysqlStore = require('koa-mysql-session');
+const static = require('koa-static');
 var bodyparser = require('koa-bodyparser');
 var config = require('./lib/config.js');
 // var proxy = require('koa-server-http-proxy');
@@ -16,7 +18,10 @@ const sessionMysqlConfig = {
     host: config.database.HOST,
 };
 
-
+const staticPath = './pdf';
+app.use(static(
+    path.join( __dirname,  staticPath)
+  ));
 app.use(session({
     key: 'USER_SID',
     store: new MysqlStore(sessionMysqlConfig)
@@ -44,6 +49,7 @@ app.use(bodyparser());
 
 app.use(require('./routers/sign.js').routes());
 app.use(require('./routers/getBook.js').routes());
+app.use(require('./routers/admin.js').routes());
 // app.use(require('./routers/getUserInfo.js').routes());
 // app.use(require('./routers/updateScore.js').routes());
 // app.use(require('./routers/insertScore.js').routes());

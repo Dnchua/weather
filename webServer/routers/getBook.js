@@ -59,4 +59,23 @@ router.get('/getSearchBook',async (ctx) => {
             ctx.body = {msg:'服务器内部系统出错'}
         })
 });
+
+router.get('/getRecommendBook',async (ctx) => {
+    const id = ctx.query.id;
+    // console.log(ctx_query);
+    await userModel.getRecommendBook(id)
+        .then(result => {
+            let res = result;
+            if (res.length) {
+                ctx.body = {res:res,state:1};
+                console.log('获取'+ id +'推荐书籍数据成功')
+            }else{
+                ctx.body = {res:[],state:3};
+                console.log('获取'+ id +'推荐书籍数据失败')
+            }
+        }).catch(err => {
+            console.log(err)
+            ctx.body = {msg:'服务器内部系统出错'}
+        })
+});
 module.exports = router
