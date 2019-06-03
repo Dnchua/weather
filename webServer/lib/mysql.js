@@ -198,6 +198,12 @@ let getRecommendBook = function (values) {
   let _sql = "SELECT * from t_recommend s join t_book b on s.Book_num=b.Book_num where s.Student_num=?";
   return query(_sql,values);
 }
+
+let getStudentInfo = function (values) {
+  let _sql = "SELECT * from t_student where Student_num=?";
+  return query(_sql,values);
+}
+
 module.exports = {
   query,
   insertData,
@@ -220,5 +226,6 @@ module.exports = {
   getSearchBook,
   updatePsw,
   updateSInfo,
-  getRecommendBook
+  getRecommendBook,
+  getStudentInfo
 };
